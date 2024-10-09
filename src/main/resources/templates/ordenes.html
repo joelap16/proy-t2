@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Rubic landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Rubic Landing page | Free Bootstrap 4.1 landing page</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Rubic main styles -->
+	<link rel="stylesheet" href="assets/css/rubic.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+	<h1>Lista de Órdenes</h1>
+	     
+	    <div id="formAgregarOrden">
+	        <h2>Agregar Nueva Orden</h2>
+	        <form th:action="@{/saveOrden}" th:object="${orden}" method="post">
+	            <div>
+	                <label for="idOrden">ID</label>
+	                <input type="number" id="idOrden" name="idOrden" required min="1"/>
+	            </div>
+
+	            <div>
+	                <label for="idCliente">ID del Cliente</label>
+	                <input type="number" id="idCliente" name="idCliente" required min="1"/>
+	            </div>         
+
+				<div>
+				     <label for="idLibro">ID del Libro:</label>
+				       <input type="number" id="idLibro" name="idLibro" required min="6"/>
+				</div>
+				
+				<div>
+				     <label for="fechaOrden">Fecha de Orden:</label>
+				     <input type="date" id="fechaOrden" name="fechaOrden" required/>
+				</div>
+				
+	            <div>
+	                <button type="submit">Agregar</button>
+	            </div>
+	        </form>
+	    </div>
+
+	    <table>
+	        <thead>
+	            <tr>
+	                <th>ID</th>
+	                <th>ID del Cliente</th>
+	                <th>ID del Libro</th>
+	                <th>Fecha de Orden</th>
+	                <th>Acciones</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="orden : ${ordenes}">
+	                <td th:text="${orden.idOrden}"></td>
+	                <td th:text="${orden.idCliente}"></td>
+	                <td th:text="${orden.libro != null ? orden.libro.idLibro : 'Sin libro asignado'}"></td>
+	                <td th:text="${orden.fechaOrden}"></td>
+	                <td>
+	                    <a th:href="@{/editarOrden/{id}(id=${orden.idOrden})}" class="btn">Editar</a>
+	                    <a th:href="@{/ordenes/eliminar/{id}(id=${orden.idOrden})}" class="btn">Eliminar</a>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+
+	    <a href="/" class="btn">Regresar al inicio</a>
+	 
+		
+	<!-- core  -->
+	    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+	    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+	    <!-- bootstrap 3 affix -->
+		<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+	    <!-- Rubic js -->
+	    <script src="assets/js/rubic.js"></script>
+
+	</body>
+	</html>

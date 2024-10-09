@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Rubic landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Rubic Landing page | Free Bootstrap 4.1 landing page</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Rubic main styles -->
+	<link rel="stylesheet" href="assets/css/rubic.css">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+		<h1>Lista de Libros</h1>
+		    
+		    <a href="/formLibro" class="btn">Agregar Nuevo Libro</a>
+		    
+		    <table>
+		        <thead>
+		            <tr>
+		                <th>ID</th>
+		                <th>Título</th>
+		                <th>Nombre del Autor</th>
+		                <th>Apellido del Autor</th>
+		                <th>Categoría</th>
+		                <th>Precio</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="libro : ${libros}">
+		                <td th:text="${libro.idLibro}"></td>
+		                <td th:text="${libro.titulo}"></td>
+		                <td th:text="${libro.nomAutor}"></td>
+		                <td th:text="${libro.apeAutor}"></td>
+		                <td th:text="${libro.categoria}"></td>
+		                <td th:text="${libro.precio}"></td>
+		                <td>
+		                    <a th:href="@{/libros/editar/{id}(id=${libro.idLibro})}" class="btn">Editar</a>
+		                    <a th:href="@{/libros/eliminar/{id}(id=${libro.idLibro})}" class="btn">Eliminar</a>
+		                </td>
+		            </tr>
+		        </tbody>
+		    </table>
+
+		    <a href="/" class="btn">Regresar al inicio</a>
+	
+	<!-- core  -->
+	    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+	    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+	    <!-- bootstrap 3 affix -->
+		<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+	    <!-- Rubic js -->
+	    <script src="assets/js/rubic.js"></script>
+
+	</body>
+	</html>
